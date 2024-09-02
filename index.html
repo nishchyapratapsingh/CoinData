@@ -565,7 +565,7 @@
             document.getElementById('bitcoin-price').innerText = `$${data.bitcoin.usd}`;
         } catch (error) {
             console.error('Error fetching Bitcoin price:', error);
-            document.getElementById('bitcoin-price').innerText = 'Failed to load price';
+            document.getElementById('bitcoin-price').innerText = 'Failed to load!';
         }
     }
 
@@ -576,7 +576,7 @@
     setInterval(getBitcoinPrice, 60000);
 
     async function getBitcoinNews() {
-    const endpoint = `http://localhost:3000/news`;
+    const endpoint = `https://newsapi.org/v2/everything?q=bitcoin&from=2024-08-02&sortBy=publishedAt&apiKey=094c7e2d889e4f4f804af4bd1859960d`;
 
     try {
         const response = await fetch(endpoint);
