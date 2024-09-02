@@ -3,67 +3,652 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Bogart&display=swap" rel="stylesheet">
+    <title>CoinData</title>
+    <link rel="icon" href="logo.png" type="image/png">
     <style>
+        /* Base Styles */
         body {
+            overflow-x: hidden;
             font-family: 'Poppins', sans-serif;
-            background-color: #F2E8C6;
-            color: #800000;
+            background-color: #1E201E;
+            color: #ECDFCC;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Header Styles */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
-            background-color: #982B1C;
+            padding: 10px 30px;
+            background-color: #2a2b26;
+            color: #ECDFCC;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-sizing: border-box;
         }
 
         .logo img {
             height: 50px;
-            width: auto;
+            vertical-align: middle;
         }
 
-        .navigation ul {
+        nav ul {
             list-style: none;
-            margin: 0;
             padding: 0;
+            margin: 0;
             display: flex;
+            gap: 20px;
         }
 
-        .navigation ul li {
-            margin-left: 20px;
+        nav ul li {
+            margin: 0;
         }
 
-        .navigation ul li a {
+        nav ul li a {
             text-decoration: none;
-            color: #F2E8C6;
+            color: #ECDFCC;
             font-weight: 600;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
-        .navigation ul li a:hover {
-            color: #DAD4B5;
+        nav ul li a:hover {
+            color: #B85042;
+        }
+
+        /* Intro Section Styles */
+        #intro {
+            display: flex;
+            height: 100vh;
+            padding-top: 40px;
+            background: url('bg1.png') no-repeat center center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-content {
+            display: flex;
+            width: 100vw;
+            position: relative;
+        }
+
+        .intro-left {
+            flex: 2;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .intro-left blockquote {
+            font-style: italic;
+            color: #E7E8D1;
+            background-color: #4b4c43a6;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            font-size: 1.2rem;
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        .intro-left h1 {
+            font-family: 'Bogart', serif;
+            font-size: 3.7rem;
+            color: #ECDFCC;
+            margin: 20px 0 0;
+            line-height: 1.2;
+        }
+
+        /* Intro Right Styles */
+        .intro-right {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #4b4c43a6;
+            padding: 40px;
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin-top: 36px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+
+        .tools {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            text-align: left;
+            width: 100%; /* Extend the container */
+        }
+
+        .tools h2 {
+            font-size: 2.5rem;
+            color: #ECDFCC;
+            margin-bottom: 10px;
+        }
+
+        .tool-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%; /* Ensure buttons fill the container */
+        }
+
+        .tool-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* Buttons take full width */
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #111010d6;
+            color: #ECDFCC;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tool-item:hover {
+            background-color: rgba(66, 57, 6, 0.856);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            bottom: 0;
+            width: 100vw;
+        }
+
+        #bitcoin {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #2a2b26bf;
+    padding: 60px 30px;
+    margin: 20px 0;
+    border-radius: 10px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    height: auto; /* Adjust height based on content */
+}
+
+#bitcoin .section-content {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.bitcoin-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#bitcoin-price-container,
+#quiz-container {
+    max-width: 60%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 100vh; /* Set a max-height for the scrollable area */
+    background-color: #111010d6;
+    padding: 50px;
+    border-radius: 10px;
+}
+
+
+#bitcoin-price-container {
+    max-width: 45%; /* Adjust width to fit half the page */
+}
+
+#quiz-container {
+    max-width: 45%; /* Adjust width to fit half the page */
+}
+
+#bitcoin-price {
+    font-size: 5rem;
+    color: #ECDFCC;
+    font-weight: bold;
+}
+
+
+        #historical {
+            background-color: #2a2b26e2;
+            padding: 60px 30px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        #historical-chart {
+            font-size: 1.2rem;
+            color: #ECDFCC;
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="logo.png" alt="Crypto Portal Logo">
+            <img src="logo.png" alt="Logo">
         </div>
-        <nav class="navigation">
+        <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#prices">Prices</a></li>
+                <li><a href="#intro">Home</a></li>
+                <li><a href="#bitcoin">Bitcoin Prices</a></li>
                 <li><a href="#news">News</a></li>
-                <li><a href="#trends">Trends</a></li>
-                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#quiz-container">Quiz</a></li>
+                <li><a href="#historical">Historical Trends</a></li>
             </ul>
         </nav>
     </header>
+
+    <section id="intro">
+        <div class="intro-content">
+            <div class="intro-left">
+                <blockquote>“Bitcoin is the most important invention in the history of the world since the Internet.”—Roger Ver, Bitcoin angel investor, and evangelist.
+                </blockquote>
+                <h1>Explore the World</h1><h1>of Bitcoin</h1>
+            </div>
+            <div class="intro-right">
+                <div class="tools">
+                    <h2>Navigation</h2>
+                    <div class="tool-list">
+                        <a href="#bitcoin" class="tool-item">Bitcoin Live Prices</a>
+                        <a href="#news" class="tool-item">Crypto News</a>
+                        <a href="#quiz-container" class="tool-item">Quiz</a>
+                        <a href="#historical" class="tool-item">Historical Trends</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bitcoin">
+        <div class="section-content">
+            <div class="bitcoin-container">
+                <div id="bitcoin-price-container">
+                    <h2>Live Bitcoin Prices</h2>
+                    <p>Check out the latest Bitcoin price updated in real-time.</p>
+                    <div id="bitcoin-price">Loading...</div>
+                </div>
+                <div id="quiz-container">
+                    <h2>Crypto Quiz</h2>
+                    <p>Test your knowledge about Bitcoin and other cryptocurrencies.</p>
+                        <div class="quiz-question">
+                            <h3>1. What is Bitcoin?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q1" value="a"> A digital currency</label><br>
+                                <label><input type="radio" name="q1" value="b"> A type of stock</label><br>
+                                <label><input type="radio" name="q1" value="c"> A kind of software</label><br>
+                                <label><input type="radio" name="q1" value="d"> A social media platform</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>2. Who is considered the creator of Bitcoin?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q2" value="a"> Vitalik Buterin</label><br>
+                                <label><input type="radio" name="q2" value="b"> Satoshi Nakamoto</label><br>
+                                <label><input type="radio" name="q2" value="c"> Elon Musk</label><br>
+                                <label><input type="radio" name="q2" value="d"> Charlie Lee</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>3. When was Bitcoin created?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q3" value="a"> 2005</label><br>
+                                <label><input type="radio" name="q3" value="b"> 2009</label><br>
+                                <label><input type="radio" name="q3" value="c"> 2012</label><br>
+                                <label><input type="radio" name="q3" value="d"> 2015</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>4. What is the maximum supply of Bitcoin?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q4" value="a"> 21 million</label><br>
+                                <label><input type="radio" name="q4" value="b"> 50 million</label><br>
+                                <label><input type="radio" name="q4" value="c"> 100 million</label><br>
+                                <label><input type="radio" name="q4" value="d"> 1 billion</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>5. What technology underpins Bitcoin?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q5" value="a"> Blockchain</label><br>
+                                <label><input type="radio" name="q5" value="b"> Cloud Computing</label><br>
+                                <label><input type="radio" name="q5" value="c"> Artificial Intelligence</label><br>
+                                <label><input type="radio" name="q5" value="d"> Virtual Reality</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>6. Which protocol does Bitcoin use for transactions?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q6" value="a"> Proof of Work</label><br>
+                                <label><input type="radio" name="q6" value="b"> Proof of Stake</label><br>
+                                <label><input type="radio" name="q6" value="c"> Delegated Proof of Stake</label><br>
+                                <label><input type="radio" name="q6" value="d"> Proof of Authority</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>7. What is a Bitcoin wallet used for?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q7" value="a"> Storing Bitcoin</label><br>
+                                <label><input type="radio" name="q7" value="b"> Mining Bitcoin</label><br>
+                                <label><input type="radio" name="q7" value="c"> Trading Bitcoin</label><br>
+                                <label><input type="radio" name="q7" value="d"> Displaying Bitcoin charts</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>8. What is a Bitcoin node?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q8" value="a"> A computer that validates transactions</label><br>
+                                <label><input type="radio" name="q8" value="b"> A type of Bitcoin wallet</label><br>
+                                <label><input type="radio" name="q8" value="c"> A Bitcoin mining rig</label><br>
+                                <label><input type="radio" name="q8" value="d"> A Bitcoin exchange</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>9. What is the primary use of Bitcoin's blockchain?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q9" value="a"> To record transactions</label><br>
+                                <label><input type="radio" name="q9" value="b"> To store personal data</label><br>
+                                <label><input type="radio" name="q9" value="c"> To mine new Bitcoin</label><br>
+                                <label><input type="radio" name="q9" value="d"> To manage Bitcoin exchanges</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>10. What is a Bitcoin halving event?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q10" value="a"> Reduction in mining rewards</label><br>
+                                <label><input type="radio" name="q10" value="b"> Increase in transaction fees</label><br>
+                                <label><input type="radio" name="q10" value="c"> Change in Bitcoin's protocol</label><br>
+                                <label><input type="radio" name="q10" value="d"> A type of Bitcoin wallet</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>11. Which company is known for introducing Bitcoin ATMs?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q11" value="a"> Coinstar</label><br>
+                                <label><input type="radio" name="q11" value="b"> Bitmain</label><br>
+                                <label><input type="radio" name="q11" value="c"> General Bytes</label><br>
+                                <label><input type="radio" name="q11" value="d"> Ledger</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>12. What does "FOMO" stand for in cryptocurrency trading?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q12" value="a"> Fear of Missing Out</label><br>
+                                <label><input type="radio" name="q12" value="b"> Fear of Market Oscillation</label><br>
+                                <label><input type="radio" name="q12" value="c"> Fund of Market Opportunities</label><br>
+                                <label><input type="radio" name="q12" value="d"> Factor of Market Outcomes</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>13. What is a "block" in the Bitcoin blockchain?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q13" value="a"> A collection of transactions</label><br>
+                                <label><input type="radio" name="q13" value="b"> A unit of mining power</label><br>
+                                <label><input type="radio" name="q13" value="c"> A Bitcoin wallet address</label><br>
+                                <label><input type="radio" name="q13" value="d"> A type of cryptocurrency</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>14. What is a "hard fork" in blockchain technology?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q14" value="a"> A significant change to the protocol</label><br>
+                                <label><input type="radio" name="q14" value="b"> A small update to the software</label><br>
+                                <label><input type="radio" name="q14" value="c"> A type of wallet</label><br>
+                                <label><input type="radio" name="q14" value="d"> A cryptocurrency exchange</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>15. What is the purpose of a "nonce" in Bitcoin mining?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q15" value="a"> To find a valid hash</label><br>
+                                <label><input type="radio" name="q15" value="b"> To store Bitcoin addresses</label><br>
+                                <label><input type="radio" name="q15" value="c"> To encrypt transactions</label><br>
+                                <label><input type="radio" name="q15" value="d"> To manage mining rigs</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>16. What is a "smart contract"?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q16" value="a"> Self-executing contract with the terms written in code</label><br>
+                                <label><input type="radio" name="q16" value="b"> A legal document in digital form</label><br>
+                                <label><input type="radio" name="q16" value="c"> A type of cryptocurrency wallet</label><br>
+                                <label><input type="radio" name="q16" value="d"> A method of mining Bitcoin</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>17. What is the primary purpose of the "Genesis Block"?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q17" value="a"> It is the first block in the Bitcoin blockchain</label><br>
+                                <label><input type="radio" name="q17" value="b"> It is a type of Bitcoin wallet</label><br>
+                                <label><input type="radio" name="q17" value="c"> It is a software update for Bitcoin</label><br>
+                                <label><input type="radio" name="q17" value="d"> It is a Bitcoin mining pool</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>18. What does "ICO" stand for in the cryptocurrency world?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q18" value="a"> Initial Coin Offering</label><br>
+                                <label><input type="radio" name="q18" value="b"> Initial Coin Operation</label><br>
+                                <label><input type="radio" name="q18" value="c"> International Coin Offering</label><br>
+                                <label><input type="radio" name="q18" value="d"> International Coin Operation</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>19. What is a "token" in the context of blockchain technology?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q19" value="a"> A digital asset created on an existing blockchain</label><br>
+                                <label><input type="radio" name="q19" value="b"> A type of mining hardware</label><br>
+                                <label><input type="radio" name="q19" value="c"> A blockchain protocol</label><br>
+                                <label><input type="radio" name="q19" value="d"> A Bitcoin wallet</label>
+                            </div>
+                        </div>
+                        <div class="quiz-question">
+                            <h3>20. What is the primary purpose of a "cryptographic hash function"?</h3>
+                            <div class="quiz-options">
+                                <label><input type="radio" name="q20" value="a"> To convert data into a fixed-size string of characters</label><br>
+                                <label><input type="radio" name="q20" value="b"> To encrypt data for secure storage</label><br>
+                                <label><input type="radio" name="q20" value="c"> To manage Bitcoin transactions</label><br>
+                                <label><input type="radio" name="q20" value="d"> To calculate mining difficulty</label>
+                            </div>
+                        </div>
+                        <button id="submit-quiz" onclick="checkAnswers()">Submit Answers</button>
+                        <div id="quiz-results"></div>
+                                        
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="news">
+        <div class="section-content">
+            <div id="news-container">
+                <h2>Crypto News</h2>
+                <p>Stay informed with the latest news in the cryptocurrency world.</p>
+                <!-- News articles will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+    
+
+   
+    
+    <script>
+        function checkAnswers() {
+    const answers = {
+        q1: 'a',
+        q2: 'b',
+        q3: 'b',
+        q4: 'a',
+        q5: 'a',
+        q6: 'a',
+        q7: 'a',
+        q8: 'a',
+        q9: 'a',
+        q10: 'a',
+        q11: 'c',
+        q12: 'a',
+        q13: 'a',
+        q14: 'a',
+        q15: 'a',
+        q16: 'a',
+        q17: 'a',
+        q18: 'a',
+        q19: 'a',
+        q20: 'a'
+    };
+
+    let score = 0;
+    const resultContainer = document.getElementById('quiz-results');
+    resultContainer.innerHTML = '';
+
+    Object.keys(answers).forEach(question => {
+        const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+        if (selectedOption && selectedOption.value === answers[question]) {
+            score++;
+        }
+    });
+
+    resultContainer.innerHTML = `You scored ${score} out of ${Object.keys(answers).length}.`;
+}
+
+    </script>
+    
+
+    <section id="historical">
+        <div class="section-content">
+            <h2>Historical Trends</h2>
+            <p>Explore the historical price trends of Bitcoin with interactive charts.</p>
+            <canvas id="historical-chart" width="600" height="400"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 CoinData. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        async function fetchHistoricalData() {
+            const response = await fetch('https://api.coindesk.com/v1/bpi/historical/close.json');
+            const data = await response.json();
+            return data.bpi;
+        }
+        
+    async function getBitcoinPrice() {
+        try {
+            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
+            const data = await response.json();
+            document.getElementById('bitcoin-price').innerText = `$${data.bitcoin.usd}`;
+        } catch (error) {
+            console.error('Error fetching Bitcoin price:', error);
+            document.getElementById('bitcoin-price').innerText = 'Failed to load price';
+        }
+    }
+
+    // Call the function to get the price on page load
+    getBitcoinPrice();
+
+    // Refresh price every 60 seconds
+    setInterval(getBitcoinPrice, 60000);
+
+    async function getBitcoinNews() {
+    const endpoint = `http://localhost:3000/news`;
+
+    try {
+        const response = await fetch(endpoint);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const newsContainer = document.getElementById('news-container');
+        newsContainer.innerHTML = ''; // Clear previous news items
+
+        if (data.articles.length === 0) {
+            newsContainer.innerHTML = 'No news articles found.';
+            return;
+        }
+
+        data.articles.forEach(article => {
+            const newsItem = document.createElement('div');
+            newsItem.classList.add('news-item');
+            newsItem.innerHTML = `
+                <h3><a href="${article.url}" target="_blank">${article.title}</a></h3>
+                <p>${article.description}</p>
+            `;
+            newsContainer.appendChild(newsItem);
+        });
+    } catch (error) {
+        console.error('Error fetching Bitcoin news:', error);
+        document.getElementById('news-container').innerHTML = 'Failed to load news. Please try again later.';
+    }
+}
+
+// Call the function on page load
+document.addEventListener('DOMContentLoaded', getBitcoinNews);
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const historicalData = await fetchHistoricalData();
+            
+            // Extract dates and prices from the historical data
+            const labels = Object.keys(historicalData);
+            const prices = Object.values(historicalData);
+
+            const ctx = document.getElementById('historical-chart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Bitcoin Price (USD)',
+                        data: prices,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: false
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
