@@ -59,5 +59,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 For any questions or feedback, please feel free to reach out via [nishchyapsingh@gmail.com](mailto:nishchyapsingh@gmail.com).
-
-```
