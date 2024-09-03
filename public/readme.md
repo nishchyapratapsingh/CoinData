@@ -1,169 +1,61 @@
 # CoinData
 
-CoinData is a web application that fetches and displays the latest news about cryptocurrencies. It uses the NewsData.io API to retrieve news articles related to Bitcoin and presents them in a simple and clean interface.
+CoinData is a web application that provides real-time Bitcoin prices, interactive charts, and historical trends. It was developed during an AIthon, where participants were required to solve problem statements using AI tools like ChatGPT. The project fetches and displays live Bitcoin prices and visualizes historical data trends.
 
 ## Features
 
-- Fetches the latest news about Bitcoin from NewsData.io.
-- Displays news articles with titles, descriptions, and links to full articles.
-- Easy to set up and deploy locally.
+- **Real-Time Bitcoin Prices:** Get up-to-date Bitcoin prices directly from the source.
+- **Interactive Charts:** View historical Bitcoin price trends with easy-to-understand charts.
+- **Bitcoin-Related News (Planned Feature):** Fetch the latest news articles related to Bitcoin using the NewsAPI (Currently not integrated).
 
-## Prerequisites
+## Installation
 
-- Node.js (v16 or later)
-- npm (Node Package Manager)
+To run this project locally, follow these steps:
 
-## Getting Started
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/nishchyapratapsingh/coindata.git
+   ```
 
-### 1. Clone the Repository
+2. **Navigate to the project directory:**
+   ```bash
+   cd coindata
+   ```
 
-```bash
-git clone https://github.com/yourusername/coindata.git
-cd coindata
-```
+3. **Run the application:**
+   Open `index.html` in your web browser to view the application.
 
-### 2. Install Dependencies
+## Usage
 
-Make sure you have Node.js and npm installed. Run the following command to install the necessary dependencies:
+Once you have the project running:
 
-```bash
-npm install
-```
+- **Live Prices:** View real-time Bitcoin prices displayed on the homepage.
+- **Historical Charts:** Explore the interactive charts to understand Bitcoin price trends over time.
+- **News Section:** (Planned) The news section will provide the latest Bitcoin-related articles fetched from NewsAPI.
 
-### 3. Set Up the Server
+## Dependencies
 
-#### Update `server.mjs`
+- **NewsAPI:** (For fetching Bitcoin news, currently not integrated)
+- **Chart.js:** Used for rendering the interactive charts.
+- **Fetch API:** For making HTTP requests to retrieve Bitcoin prices and news.
 
-Replace `YOUR_NEWS_API_KEY` in `server.mjs` with your actual NewsData.io API key. Ensure the `server.mjs` file looks like this:
+## Planned Features
 
-```javascript
-import express from 'express';
-import fetch from 'node-fetch';
+- **Bitcoin News Integration:** We plan to integrate a feature that fetches the latest Bitcoin-related news articles using the NewsAPI.
+- **Enhanced Charts:** Additional customization and features for chart interactions.
 
-const app = express();
-const port = 3000;
+## Contributing
 
-// Endpoint to serve static files
-app.use(express.static('public'));
-
-// Test route
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
-// News endpoint
-app.get('/news', async (req, res) => {
-    try {
-        const response = await fetch('https://newsdata.io/api/1/news?apikey=pub_52446555b2b90de819ab0e8899372b3435249&q=Bitcoin');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        res.json(data.results);
-    } catch (error) {
-        console.error('Error fetching Bitcoin news:', error);
-        res.status(500).send('Failed to fetch news');
-    }
-});
-
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
-```
-
-### 4. Create HTML and JavaScript
-
-Ensure you have an `index.html` file in the `public` directory. Here is a basic example of `index.html`:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoinData</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        #news-container {
-            padding: 20px;
-        }
-        .news-item {
-            margin-bottom: 20px;
-        }
-        .news-item h3 {
-            margin: 0;
-        }
-        .news-item p {
-            margin: 5px 0 0;
-        }
-        .news-item a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .news-item a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div id="news-container">
-        <h2>Crypto News</h2>
-        <p>Stay informed with the latest news in the cryptocurrency world.</p>
-    </div>
-
-    <script>
-        async function fetchNews() {
-            try {
-                const response = await fetch('/news');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                const newsContainer = document.getElementById('news-container');
-                data.forEach(article => {
-                    const newsItem = document.createElement('div');
-                    newsItem.classList.add('news-item');
-                    newsItem.innerHTML = `
-                        <h3><a href="${article.link}" target="_blank">${article.title}</a></h3>
-                        <p>${article.description}</p>
-                    `;
-                    newsContainer.appendChild(newsItem);
-                });
-            } catch (error) {
-                console.error('Failed to fetch news:', error);
-                document.getElementById('news-container').innerHTML = 'Failed to load news';
-            }
-        }
-
-        // Fetch news on page load
-        fetchNews();
-    </script>
-</body>
-</html>
-```
-
-### 5. Run the Server
-
-Start the server with the following command:
-
-```bash
-node server.mjs
-```
-
-Visit `http://localhost:3000` in your browser to view the application.
-
-## Troubleshooting
-
-- **CORS Issues:** If you face CORS issues, ensure your API key and request headers are correctly set up.
-- **Module Errors:** Make sure all dependencies are correctly installed and imported. Use `npm install` to ensure all modules are available.
+Contributions are welcome! If you have suggestions or improvements, feel free to submit a pull request or open an issue.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
----
+## Acknowledgements
+
+- Special thanks to the organizers of AIthon for providing the platform to create this project.
+
+## Contact
+
+For any questions or feedback, please feel free to reach out via [nishchyapsingh@gmail.com](mailto:nishchyapsingh@gmail.com).
