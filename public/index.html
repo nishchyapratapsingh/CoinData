@@ -32,11 +32,13 @@
             color: #ECDFCC;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             position: fixed;
-            width: 100vw;
+            width: 100%;
             top: 0;
             left: 0;
             z-index: 1000;
             box-sizing: border-box;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
         }
 
         .logo img {
@@ -168,7 +170,8 @@
         }
 
         .tool-item:hover {
-            background-color: rgba(66, 57, 6, 0.856);
+            background-color: rgba(27, 85, 184, 0.768);
+            transform: scale(1.03);
         }
 
         footer {
@@ -186,12 +189,9 @@
     background-color: #2a2b26bf;
     padding: 60px 30px;
     margin: 20px 0;
-    border-radius: 10px;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    height: auto; /* Adjust height based on content */
+    border-radius: 30px;
+    
+    height: 100%; /* Adjust height based on content */
 }
 
 #bitcoin .section-content {
@@ -206,29 +206,76 @@
     justify-content: space-between;
 }
 
-#bitcoin-price-container,
+#bitcoin-price-container
+ {
+    max-width: 100%;
+    max-height: 100vh; /* Set a max-height for the scrollable area */
+    background-color: #111010d6;
+    padding: 100px;
+    border-radius: 10px;
+}
 #quiz-container {
-    max-width: 60%;
+    max-width: 100%;
     overflow-y: auto; /* Enable vertical scrolling */
     max-height: 100vh; /* Set a max-height for the scrollable area */
     background-color: #111010d6;
     padding: 50px;
     border-radius: 10px;
+
 }
+.bitcoin-container #quiz-container:hover{
+    transform: scale(1.05);
 
+}
+.bitcoin-container #bitcoin-price-container:hover{
+    transform: scale(1.05);
 
+}
 #bitcoin-price-container {
-    max-width: 45%; /* Adjust width to fit half the page */
+    max-width: 47%; /* Adjust width to fit half the page */
+    cursor: pointer;
 }
 
 #quiz-container {
-    max-width: 45%; /* Adjust width to fit half the page */
+    max-width: 47%; /* Adjust width to fit half the page */
 }
 
 #bitcoin-price {
     font-size: 5rem;
     color: #ECDFCC;
     font-weight: bold;
+}
+#news {
+    background-color: #DAD4B5; /* Background color for the section */
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px auto;
+    width: 95%; /* Container width */
+    max-width: 1200px; /* Maximum width */
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.section-content {
+    text-align: center;
+}
+
+#news-container {
+    background-color: #111010d6;
+    color: #ECDFCC;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+#news-container h2 {
+    color: #ECDFCC;
+    font-weight: 600; /* Font weight for the heading */
+}
+
+#news-container p {
+    color: #ECDFCC;
+    font-weight: 400; /* Font weight for the paragraph text */
+    margin: 10px 0;
 }
 
 
@@ -285,7 +332,7 @@
     <section id="bitcoin">
         <div class="section-content">
             <div class="bitcoin-container">
-                <div id="bitcoin-price-container">
+                <div id="bitcoin-price-container" onclick="window.location.href='https://www.coindesk.com/price/bitcoin'">
                     <h2>Live Bitcoin Prices</h2>
                     <p>Check out the latest Bitcoin price updated in real-time.</p>
                     <div id="bitcoin-price">Loading...</div>
