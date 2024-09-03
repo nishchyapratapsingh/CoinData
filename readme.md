@@ -1,12 +1,12 @@
 # CoinData
 
-CoinData is a web application that provides real-time Bitcoin prices, interactive charts, and historical trends. It was developed during an AIthon, where participants were required to solve problem statements using AI tools like ChatGPT. The project fetches and displays live Bitcoin prices and visualizes historical data trends.
+CoinData is a web application that provides real-time Bitcoin prices, interactive charts, and historical trends. It was developed during an AIthon, where participants were required to solve problem statements using AI tools like ChatGPT. The project fetches and displays live Bitcoin prices, visualizes historical data trends, and provides the latest Bitcoin-related news.
 
 ## Features
 
 - **Real-Time Bitcoin Prices:** Get up-to-date Bitcoin prices directly from the source.
 - **Interactive Charts:** View historical Bitcoin price trends with easy-to-understand charts.
-- **Bitcoin-Related News (Planned Feature):** Fetch the latest news articles related to Bitcoin using the NewsAPI (Currently not integrated).
+- **Bitcoin-Related News:** Fetch the latest news articles related to Bitcoin using the NewsAPI.
 
 ## Installation
 
@@ -22,8 +22,20 @@ To run this project locally, follow these steps:
    cd coindata
    ```
 
-3. **Run the application:**
-   Open `index.html` in your web browser to view the application.
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+4. **Start the server:**
+   ```bash
+   node server.js
+   ```
+
+5. **Open your web browser and navigate to:**
+   ```
+   http://localhost:3000
+   ```
 
 ## Usage
 
@@ -31,17 +43,16 @@ Once you have the project running:
 
 - **Live Prices:** View real-time Bitcoin prices displayed on the homepage.
 - **Historical Charts:** Explore the interactive charts to understand Bitcoin price trends over time.
-- **News Section:** (Planned) The news section will provide the latest Bitcoin-related articles fetched from NewsAPI.
+- **News Section:** Read the latest Bitcoin-related news articles fetched from the NewsAPI.
 
 ## Dependencies
 
-- **NewsAPI:** (For fetching Bitcoin news, currently not integrated)
+- **NewsAPI:** For fetching Bitcoin news articles.
 - **Chart.js:** Used for rendering the interactive charts.
 - **Fetch API:** For making HTTP requests to retrieve Bitcoin prices and news.
 
 ## Planned Features
 
-- **Bitcoin News Integration:** We plan to integrate a feature that fetches the latest Bitcoin-related news articles using the NewsAPI.
 - **Enhanced Charts:** Additional customization and features for chart interactions.
 
 ## Contributing

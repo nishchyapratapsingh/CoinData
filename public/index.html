@@ -256,7 +256,7 @@
     overflow-y: auto;
 }
 
-.section-content {
+.sectionnews-content {
     text-align: center;
 }
 
@@ -531,7 +531,7 @@
     
 
     <section id="news">
-        <div class="section-content">
+        <div class="sectionnews-content">
             <div id="news-container">
                 <h2>Crypto News</h2>
                 <p>Stay informed with the latest news in the cryptocurrency world.</p>
@@ -623,7 +623,7 @@
     setInterval(getBitcoinPrice, 60000);
 
     async function getBitcoinNews() {
-    const endpoint = `https://newsapi.org/v2/everything?q=bitcoin&sortBy=publishedAt&apiKey=094c7e2d889e4f4f804af4bd1859960d`;
+    const endpoint = `https://newsapi.org/v2/everything?q=Bitcoin&from=2024-08-03&sortBy=publishedAt&apiKey=094c7e2d889e4f4f804af4bd1859960d`;
 
     try {
         const response = await fetch(endpoint);
