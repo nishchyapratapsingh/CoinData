@@ -623,7 +623,7 @@
     setInterval(getBitcoinPrice, 60000);
 
     async function getBitcoinNews() {
-    const endpoint = `https://newsapi.org/v2/everything?q=Bitcoin&from=2024-08-03&sortBy=publishedAt&apiKey=094c7e2d889e4f4f804af4bd1859960d`;
+    const endpoint = `http://newsapi.org/v2/everything?q=Bitcoin&from=2024-08-03&sortBy=publishedAt&apiKey=094c7e2d889e4f4f804af4bd1859960d`;
 
     try {
         const response = await fetch(endpoint);
